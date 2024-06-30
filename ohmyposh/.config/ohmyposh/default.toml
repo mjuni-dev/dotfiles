@@ -1,0 +1,85 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'blue'
+    template = '{{ .Path }}'
+
+    [blocks.segments.properties]
+      style = 'full'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'cyan' # '#6c6c6c'
+    template = ' {{ .HEAD }}'
+
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'yellow'
+    # template = '{{ div .Ms 100 }}s'
+
+    [blocks.segments.properties]
+      threshold = 500
+
+  [[blocks.segments]]
+    type = 'rust'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'red'
+    template = "  {{ .Full }} "
+
+  [[blocks.segments]]
+    type = 'go'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'cyan'
+    template = "  {{ .Full }} "
+    
+
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground_templates = [
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}magenta{{end}}",
+    ]
+    template = '〉'
+
+[transient_prompt]
+  background = 'transparent'
+  foreground_templates = [
+    "{{if gt .Code 0}}red{{end}}",
+    "{{if eq .Code 0}}magenta{{end}}",
+  ]
+  template = '〉 '
+
+[secondary_prompt]
+  background = 'transparent'
+  foreground = 'magenta'
+  template = '〉〉 '
